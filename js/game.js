@@ -4,7 +4,7 @@ let guesssmallpegs = document.querySelector(".guess-small-pegs");
 // secretpegs
 function getRandomColor() {
     const colors = [
-        'red', 'green', 'yellow', 'purple', 'blue', 'orange'
+        'red', 'green', 'black', 'purple', 'blue', 'white'
     ];
     return colors[Math.floor(Math.random() * colors.length)];
 }
