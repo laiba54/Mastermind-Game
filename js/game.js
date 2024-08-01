@@ -162,5 +162,9 @@ submitbtn.addEventListener("click", function () {
   if (currentrow >= 0) {
     updateactiverow();
   }
+    else{
+    alert('You Lose, Play Again');
+    location.reload();
+  }
 });
 
