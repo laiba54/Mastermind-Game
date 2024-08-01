@@ -152,7 +152,9 @@ submitbtn.addEventListener("click", function () {
     alert("Congratulations! Your guess is correct");
     secretpegs.forEach((peg) => (peg.style.display = "flex"));
     showFeedback(result.feedback);
-    location.reload();
+    setTimeout(()=>{
+      location.reload();
+    }, 2000)
   } else {
     showFeedback(result.feedback);
     console.log("Incorrect guess");
