@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"rel="stylesheet">
+    <title>Mastermind Game</title>
+</head>
+<body>
+
+   <div class="container">
+    <div class="play-area">
+        <h1>Mastermind Game</h1>
+        <img src="images/mastermind game.jpeg" alt="image">
+        <div class="button">
+            <button class="play-btn"><a href="game.html">Play Game</a></button>
+            <button class="rules-btn">Rules</button>
+        </div>
+    </div>
+
+    <div class="rules-area" id="rulesArea">
+        <h1>Game Rules</h1>
+        <p>1. The codemaker creates a secret code.</p>
+        <p>2. The codebreaker tries to guess the secret code within a certain number of turns.</p>
+        <p>3. The codemaker selects a sequence of 4 pegs, each peg can be one of 6 colors, duplicates are allowed.</p>
+        <p>4. The codebreaker places a sequence of 4 colored pegs in the current row and the codemaker provides feedback with small pegs: Black peg: Correct color and correct position. White peg: Correct color but wrong position. No peg: Color not in the code.</p>
+        <p>5. The codebreaker makes guesses and receives feedback until the code is guessed correctly or the codebreaker runs out of turns.</p>
+        <p>6. The codebreaker wins if they guess the code within the allowed number of turns. The codemaker wins if the codebreaker does not guess the code within the allowed number of turns.</p>
+    </div>
+
+   </div>
+    
+
+   <script src="js/script.js"></script>
+</body>
+</html>
