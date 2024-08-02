@@ -172,3 +172,7 @@ submitbtn.addEventListener("click", function () {
   }
 });
 
+let playagainbtn = document.querySelector('.play-again-btn');
+playagainbtn.addEventListener('click', function(){
+  location.reload();
+})
