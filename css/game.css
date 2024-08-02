@@ -129,7 +129,7 @@ body{
     margin: 10px auto 0px auto ;
 }
 .submit-btn{
-    width: 100%;
+    width: 100px;
     background: linear-gradient(#D0B8A8, #8D493A);
     color: white;
     padding: 10px;
@@ -139,6 +139,19 @@ body{
     transition: .5s;
 }
 .submit-btn:hover{
+    background: linear-gradient(#8D493A, #D0B8A8);
+    border: 1px solid #D0B8A8;
+}
+.play-again-btn{
+    width: 100px;
+    background: linear-gradient(#D0B8A8, #8D493A);
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    transition: .5s;
+}
+.play-again-btn:hover{
     background: linear-gradient(#8D493A, #D0B8A8);
     border: 1px solid #D0B8A8;
 }
