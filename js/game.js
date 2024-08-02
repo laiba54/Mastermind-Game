@@ -1,5 +1,6 @@
 let guessbigpegs = document.querySelector(".guess-big-pegs");
 let guesssmallpegs = document.querySelector(".guess-small-pegs");
+let secretcontainer = document.querySelector('.secret-container');
 
 // secretpegs
 function getRandomColor() {
@@ -16,7 +17,7 @@ for (let i = 0; i < 4; i++) {
   secretpegs.style.display = "none";
   secretpegs.style.border = "2px solid #D0B8A8";
   secretpegs.style.backgroundColor = getRandomColor();
-  guessbigpegs.appendChild(secretpegs);
+  secretcontainer.appendChild(secretpegs);
   randomcolors.push(window.getComputedStyle(secretpegs).backgroundColor);
 }
 console.log("secret pegs:", randomcolors);
@@ -165,7 +166,7 @@ submitbtn.addEventListener("click", function () {
   if (currentrow >= 0) {
     updateactiverow();
   }
-    else{
+  else{
     alert('You Lose, Play Again');
     location.reload();
   }
