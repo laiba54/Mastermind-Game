@@ -1,13 +1,28 @@
 let guessbigpegs = document.querySelector(".guess-big-pegs");
 let guesssmallpegs = document.querySelector(".guess-small-pegs");
-let secretcontainer = document.querySelector('.secret-container');
+let secretcontainer = document.querySelector(".secret-container");
+
+// secretpegs
+const colorMap = {
+  red: "rgb(255, 0, 0)",
+  green: "rgb(0, 128, 0)",
+  black: "rgb(0, 0, 0)",
+  purple: "rgb(128, 0, 128)",
+  blue: "rgb(0, 0, 255)",
+  white: "rgb(255, 255, 255)",
+  pink: "rgb(251, 16, 145)",
+  golden: "rgb(255, 187, 0)",
+};
+
+// RGB to color name mapping
+const rgbToColorNameMap = Object.fromEntries(
+  Object.entries(colorMap).map(([key, value]) => [value, key])
+);
 
 // secretpegs
 function getRandomColor() {
-    const colors = [
-        'red', 'green', 'black', 'purple', 'blue', 'white'
-    ];
-    return colors[Math.floor(Math.random() * colors.length)];
+  const colors = Object.keys(colorMap);
+  return colors[Math.floor(Math.random() * colors.length)];
 }
 
 let randomcolors = [];
@@ -16,9 +31,10 @@ for (let i = 0; i < 4; i++) {
   secretpegs.classList.add("secret-pegs");
   secretpegs.style.display = "none";
   secretpegs.style.border = "2px solid #D0B8A8";
-  secretpegs.style.backgroundColor = getRandomColor();
+  let colorName = getRandomColor();
+  secretpegs.style.backgroundColor = colorMap[colorName];
   secretcontainer.appendChild(secretpegs);
-  randomcolors.push(window.getComputedStyle(secretpegs).backgroundColor);
+  randomcolors.push(colorName);
 }
 console.log("secret pegs:", randomcolors);
 
@@ -43,6 +59,7 @@ for (let i = 0; i < 36; i++) {
     }
   }
 }
+
 // game logic
 // variables
 let selectpegs = document.querySelectorAll(".select-pegs");
@@ -53,7 +70,9 @@ let activepegs = document.querySelectorAll(".active");
 let secretpegs = document.querySelectorAll(".secret-pegs");
 
 let selectedBackground = "";
+let selectedColorName = "";
 let currentrow = 32;
+let pegsSelected = false;
 
 function updateactiverow() {
   activepegs.forEach((peg) => peg.classList.remove("active"));
@@ -63,16 +82,26 @@ function updateactiverow() {
   }
 
   activepegs = document.querySelectorAll(".active");
+  selectedBackground = ""; // Clear previous selection
+  pegsSelected = false; // Reset selection state
 
   setPegEventListeners();
 }
 
 function setPegEventListeners() {
+  let selectedCount = 0;
+
   activepegs.forEach((peg) => {
     peg.addEventListener("click", function () {
-      this.style.background = selectedBackground;
-      this.style.border = "2px solid #D0B8A8";
-      console.log("background applied:", this.style.background);
+      if (selectedBackground) {
+        this.style.background = selectedBackground;
+        this.style.border = "2px solid #D0B8A8";
+        selectedCount++;
+        if (selectedCount === 4) {
+          pegsSelected = true;
+        }
+        console.log("background applied:", selectedColorName);
+      }
     });
   });
 }
@@ -80,7 +109,7 @@ function setPegEventListeners() {
 selectpegs.forEach(function (selectpeg) {
   selectpeg.addEventListener("click", function () {
     selectedBackground = window.getComputedStyle(this).backgroundColor;
-    console.log("Selected Background:", selectedBackground);
+    selectedColorName = rgbToColorNameMap[selectedBackground] || "undefined";
   });
 });
 
@@ -94,7 +123,7 @@ function checkwin() {
   // Collect guess colors
   for (let i = currentrow; i < currentrow + 4; i++) {
     let bgColor = window.getComputedStyle(bigpegs[i]).backgroundColor;
-    guess.push(bgColor);
+    guess.push(rgbToColorNameMap[bgColor] || "undefined");
   }
 
   console.log("Secret Colors:", randomcolors);
@@ -146,6 +175,10 @@ function showFeedback(feedback) {
 
 // Submit button functionality
 submitbtn.addEventListener("click", function () {
+  if (!pegsSelected) {
+    alert("Please select all 4 colors before submitting.");
+    return;
+  }
   console.log("Submitted");
 
   let result = checkwin();
@@ -153,9 +186,8 @@ submitbtn.addEventListener("click", function () {
     alert("Congratulations! Your guess is correct");
     secretpegs.forEach((peg) => (peg.style.display = "flex"));
     showFeedback(result.feedback);
-    setTimeout(()=>{
-      location.reload();
-    }, 2000)
+    submitbtn.disabled = true;
+    removeEventListenersetPegEventListeners();
   } else {
     showFeedback(result.feedback);
     console.log("Incorrect guess");
@@ -165,14 +197,14 @@ submitbtn.addEventListener("click", function () {
 
   if (currentrow >= 0) {
     updateactiverow();
-  }
-  else{
-    alert('You Lose, Play Again');
+  } else {
+    alert("You Lose, Play Again");
     location.reload();
   }
 });
 
-let playagainbtn = document.querySelector('.play-again-btn');
-playagainbtn.addEventListener('click', function(){
+let playagainbtn = document.querySelector(".play-again-btn");
+playagainbtn.addEventListener("click", function () {
   location.reload();
-})
+});
+
