@@ -19,7 +19,7 @@ body{
 
 .board{
     width: 220px;
-    height: 500px;
+    height: 530px;
     justify-content: space-between;
     align-items: flex-start;
     margin: 0 auto;
@@ -43,6 +43,7 @@ body{
     display: flex;
 }
 .guess-big-pegs {
+    margin-top: 2px;
     width: 75%;
     display: flex;
     flex-wrap: wrap;
@@ -54,6 +55,7 @@ body{
     background: linear-gradient(#D0B8A8, #8D493A);
     border-radius: 50%;
     margin:2px;
+    border: 1px solid #D0B8A8;
 }
 .guess-small-pegs {
     border: 1px solid #D0B8A8;
@@ -69,6 +71,7 @@ body{
     background-color: #c7ad9b;
     border-radius: 50%;
     margin: 2px;
+    border: 1px solid #8D493A;
 } 
 
 .secret-pegs{
@@ -79,22 +82,24 @@ body{
 }
 .selection-container{
     width: 100%;
-    height: 10%;
+    height: 15%;
     box-sizing: border-box;
     border: 1px solid #D0B8A8;
     border-radius: 25px;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
     margin-top: 5px;
     padding: 0px 5px;
 }
 .select-pegs{
-    width: 30px;
-    height: 30px;
+    width: 33px;
+    height: 33px;
     border-radius: 50%;
     border: 2px solid #D0B8A8;
-    margin: 2px;
+    margin: 2px 5px;
+    padding: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -118,6 +123,12 @@ body{
 .white{
     background-color: white;
 }
+.golden{
+    background-color: rgb(255, 187, 0);
+}
+.pink{
+    background-color: rgb(251, 16, 145);
+}
 
 .answer-container{
     width: 100%;
@@ -140,7 +151,6 @@ body{
 }
 .submit-btn:hover{
     background: linear-gradient(#8D493A, #D0B8A8);
-    border: 1px solid #D0B8A8;
 }
 .play-again-btn{
     width: 100px;
@@ -153,7 +163,6 @@ body{
 }
 .play-again-btn:hover{
     background: linear-gradient(#8D493A, #D0B8A8);
-    border: 1px solid #D0B8A8;
 }
 
 /* media queries */
